@@ -7,16 +7,16 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-  
+
   const [isChecked, setIsChecked] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme === 'dark';
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme === "dark";
   });
 
   const handleThemeChange = () => {
     setIsChecked((prev) => {
       const newTheme = !prev;
-      localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+      localStorage.setItem("theme", newTheme ? "dark" : "light");
       return newTheme;
     });
   };
@@ -35,7 +35,11 @@ const Navbar = () => {
     <div className="navbar bg-base-100 shadow-sm px-2 sm:px-4 fixed top-0 left-0 w-full z-50">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden p-2">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost lg:hidden p-2"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -90,12 +94,12 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to={"/add-services"}
+                    to="/quiz"
                     className={({ isActive }) =>
                       isActive ? "text-primary font-bold" : ""
                     }
                   >
-                    Add Services
+                    Quiz
                   </NavLink>
                 </li>
                 <li>
@@ -118,12 +122,31 @@ const Navbar = () => {
                     My Orders
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    to="/quiz"
+                    className={({ isActive }) =>
+                      isActive ? "text-primary font-bold" : ""
+                    }
+                  >
+                    Take Quiz
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/leaderboard"
+                    className={({ isActive }) =>
+                      isActive ? "text-primary font-bold" : ""
+                    }
+                  >
+                    Leaderboard
+                  </NavLink>
+                </li>
               </>
             )}
           </ul>
         </div>
         <NavLink to="/" className="flex items-center gap-2 ml-1">
-          
           <span className="font-bold text-lg sm:text-xl bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
             QuizHero
           </span>
@@ -166,34 +189,16 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  to={"/add-services"}
+                  to="/quiz"
                   className={({ isActive }) =>
                     isActive ? "text-primary font-bold" : ""
                   }
                 >
-                  Add Services
+                  Quiz
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to={"/my-services"}
-                  className={({ isActive }) =>
-                    isActive ? "text-primary font-bold" : ""
-                  }
-                >
-                  My Services
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to={"/my-orders"}
-                  className={({ isActive }) =>
-                    isActive ? "text-primary font-bold" : ""
-                  }
-                >
-                  My Orders
-                </NavLink>
-              </li>
+              
+              
             </>
           )}
         </ul>
@@ -207,7 +212,7 @@ const Navbar = () => {
             checked={isChecked}
             value="synthwave"
             className="theme-controller"
-            onChange={() => {}} 
+            onChange={() => {}}
           />
 
           <svg

@@ -3,7 +3,8 @@ import RootLayout from "../RootLayout/RootLayout";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
-
+import Quiz from "../Pages/Quiz/Quiz";
+import Leaderboard from "../Pages/Leaderboard/Leaderboard";
 
 const router = createBrowserRouter([
     {
@@ -12,22 +13,26 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                Component:Home
+                Component: Home
             },
             {
                 path: '/login',
-                Component:Login
+                Component: Login
             },
             {
-                path: 'signup',
-                Component:Register
+                path: '/signup',
+                Component: Register
+            },
+            {
+                path: '/quiz',
+                Component: Quiz
+            },
+            {
+                path: '/leaderboard',
+                Component: Leaderboard
             }
         ]
     },
 ]);
-
-
-
-
 
 export default router;
