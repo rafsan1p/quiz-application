@@ -12,7 +12,7 @@ const Home = () => {
                 {/* Hero Section */}
                 <div className="text-center mb-16">
                     <h1 className="text-5xl md:text-7xl font-bold text-indigo-900 mb-6 animate-fade-in">
-                        Welcome to <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">QuizHero</span>
+                        Welcome to <span className="quiz-hero-gradient">QuizHero</span>
                     </h1>
                     <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
                         Challenge yourself with engaging quizzes across multiple categories. 
@@ -59,8 +59,8 @@ const Home = () => {
                         <div className="text-5xl mb-4">📚</div>
                         <h3 className="text-2xl font-bold mb-3 text-gray-800">Multiple Categories</h3>
                         <p className="text-gray-600">
-                            Choose from Programming, Science, Mathematics, History, Geography and more. 
-                            New categories added regularly!
+                            Choose from Programming, Science, Mathematics, History, Geography, and more specialized topics. 
+                            Each category has 15 carefully crafted questions!
                         </p>
                     </div>
 
@@ -69,7 +69,7 @@ const Home = () => {
                         <h3 className="text-2xl font-bold mb-3 text-gray-800">Three Difficulty Levels</h3>
                         <p className="text-gray-600">
                             Start with Easy, challenge yourself with Medium, or master Hard difficulty. 
-                            Perfect for all skill levels!
+                            Each level has 25 questions across all categories!
                         </p>
                     </div>
 
@@ -90,7 +90,7 @@ const Home = () => {
                     </h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         <div className="text-center">
-                            <div className="text-4xl font-bold text-indigo-600 mb-2">45+</div>
+                            <div className="text-4xl font-bold text-indigo-600 mb-2">75</div>
                             <div className="text-gray-600">Total Questions</div>
                         </div>
                         <div className="text-center">
@@ -102,8 +102,24 @@ const Home = () => {
                             <div className="text-gray-600">Difficulty Levels</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-4xl font-bold text-indigo-600 mb-2">10</div>
+                            <div className="text-4xl font-bold text-indigo-600 mb-2">5</div>
                             <div className="text-gray-600">Questions per Quiz</div>
+                        </div>
+                    </div>
+                    
+                    {/* Additional Stats Row */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 pt-6 border-t border-gray-200">
+                        <div className="text-center">
+                            <div className="text-3xl font-bold text-purple-600 mb-2">5</div>
+                            <div className="text-gray-600">Questions per Topic/Level</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-3xl font-bold text-green-600 mb-2">15</div>
+                            <div className="text-gray-600">Questions per Category</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-3xl font-bold text-orange-600 mb-2">25</div>
+                            <div className="text-gray-600">Questions per Difficulty</div>
                         </div>
                     </div>
                 </div>
@@ -127,7 +143,7 @@ const Home = () => {
                         <div className="text-center">
                             <div className="text-5xl mb-3">3️⃣</div>
                             <h3 className="font-bold text-lg mb-2">Answer Questions</h3>
-                            <p className="text-indigo-100 text-sm">10 multiple choice questions to test your knowledge</p>
+                            <p className="text-indigo-100 text-sm">5 multiple choice questions from our pool of 75 curated questions</p>
                         </div>
                         <div className="text-center">
                             <div className="text-5xl mb-3">4️⃣</div>

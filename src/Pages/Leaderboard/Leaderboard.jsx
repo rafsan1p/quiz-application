@@ -16,21 +16,7 @@ const Leaderboard = () => {
   const [userResults, setUserResults] = useState([]);
   const [activeTab, setActiveTab] = useState('global');
 
-  useEffect(() => {
-    fetchCategories();
-    fetchLeaderboard();
-  }, []);
-
-  useEffect(() => {
-    if (user && activeTab === 'personal') {
-      fetchUserResults();
-    }
-  }, [user, activeTab]);
-
-  useEffect(() => {
-    fetchLeaderboard();
-  }, [selectedCategory]);
-
+  // Function declarations - moved before useEffect
   const fetchCategories = async () => {
     try {
       const response = await fetch(`${API_URL}/categories`);
@@ -70,6 +56,22 @@ const Leaderboard = () => {
     }
   };
 
+  // useEffect hooks - now after function declarations
+  useEffect(() => {
+    fetchCategories();
+    fetchLeaderboard();
+  }, []);
+
+  useEffect(() => {
+    if (user && activeTab === 'personal') {
+      fetchUserResults();
+    }
+  }, [user, activeTab]);
+
+  useEffect(() => {
+    fetchLeaderboard();
+  }, [selectedCategory]);
+
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -95,9 +97,9 @@ const Leaderboard = () => {
 
   const getDifficultyColor = (difficulty) => {
     switch(difficulty.toLowerCase()) {
-      case 'easy': return 'bg-green-100 text-green-700';
-      case 'medium': return 'bg-yellow-100 text-yellow-700';
-      case 'hard': return 'bg-red-100 text-red-700';
+      case 'easy': return 'difficulty-badge-easy';
+      case 'medium': return 'difficulty-badge-medium';
+      case 'hard': return 'difficulty-badge-hard';
       default: return 'bg-gray-100 text-gray-700';
     }
   };
@@ -107,20 +109,22 @@ const Leaderboard = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-indigo-900 mb-2">
+          <h1 className="text-4xl md:text-5xl font-bold text-indigo-900 mb-4">
             🏆 Leaderboard
           </h1>
-          <p className="text-gray-600">See how you rank against other players</p>
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            See how you rank against other players and compete for the top spot!
+          </p>
         </div>
 
         {/* Tabs */}
         <div className="flex justify-center gap-4 mb-6">
           <button
             onClick={() => setActiveTab('global')}
-            className={`px-6 py-2 rounded-lg font-semibold transition ${
+            className={`px-6 py-2 rounded-lg font-semibold transition-all duration-200 ${
               activeTab === 'global'
-                ? 'bg-indigo-600 text-white'
-                : 'bg-white text-gray-700 hover:bg-gray-100'
+                ? 'bg-indigo-600 text-white shadow-lg'
+                : 'leaderboard-tab-inactive'
             }`}
           >
             Global Rankings
@@ -128,10 +132,10 @@ const Leaderboard = () => {
           {user && (
             <button
               onClick={() => setActiveTab('personal')}
-              className={`px-6 py-2 rounded-lg font-semibold transition ${
+              className={`px-6 py-2 rounded-lg font-semibold transition-all duration-200 ${
                 activeTab === 'personal'
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-100'
+                  ? 'bg-indigo-600 text-white shadow-lg'
+                  : 'leaderboard-tab-inactive'
               }`}
             >
               My Results
@@ -141,7 +145,7 @@ const Leaderboard = () => {
 
         {/* Global Leaderboard */}
         {activeTab === 'global' && (
-          <div className="bg-white rounded-xl shadow-lg p-6">
+          <div className="leaderboard-header bg-white rounded-xl shadow-lg p-6">
             {/* Category Filter */}
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -150,7 +154,7 @@ const Leaderboard = () => {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="select select-bordered w-full max-w-xs"
+                className="category-filter select select-bordered w-full max-w-xs"
               >
                 <option value="all">All Categories</option>
                 {categories.map(cat => (
@@ -160,58 +164,59 @@ const Leaderboard = () => {
             </div>
 
             {loading ? (
-              <div className="text-center py-12">
+              <div className="loading-container text-center py-12 rounded-lg">
                 <div className="loading loading-spinner loading-lg text-indigo-600"></div>
                 <p className="mt-4 text-gray-600">Loading leaderboard...</p>
               </div>
             ) : leaderboard.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-gray-600 text-lg">No results yet. Be the first to take a quiz!</p>
-                <button onClick={() => navigate('/quiz')} className="btn btn-primary mt-4">
+              <div className="empty-state text-center py-12 rounded-lg">
+                <div className="text-6xl mb-4">🏆</div>
+                <p className="text-gray-600 text-lg mb-4">No results yet. Be the first to take a quiz!</p>
+                <button onClick={() => navigate('/quiz')} className="btn btn-primary">
                   Take Quiz
                 </button>
               </div>
             ) : (
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {leaderboard.map((entry, index) => (
                   <div
                     key={entry.id}
-                    className={`flex items-center justify-between p-4 rounded-lg transition ${
+                    className={`leaderboard-entry flex items-center justify-between p-6 rounded-xl transition-all duration-300 ${
                       user && entry.userEmail === user.email
-                        ? 'bg-indigo-50 border-2 border-indigo-300'
-                        : 'bg-gray-50 hover:bg-gray-100'
+                        ? 'user-entry'
+                        : ''
                     }`}
                   >
-                    <div className="flex items-center gap-4 flex-1">
-                      <span className="text-2xl font-bold min-w-12 text-center">
+                    <div className="flex items-center gap-6 flex-1">
+                      <span className="rank-medal text-3xl font-bold min-w-16 text-center">
                         {getMedalEmoji(index)}
                       </span>
                       <div className="flex-1">
-                        <div className="font-semibold text-gray-800 flex items-center gap-2">
+                        <div className="font-bold text-lg text-gray-800 flex items-center gap-3 mb-2">
                           {entry.userName}
                           {user && entry.userEmail === user.email && (
-                            <span className="text-xs bg-indigo-600 text-white px-2 py-1 rounded">You</span>
+                            <span className="text-xs bg-indigo-600 text-white px-3 py-1 rounded-full font-semibold">You</span>
                           )}
                         </div>
-                        <div className="text-sm text-gray-600 flex items-center gap-2 mt-1">
-                          <span className={`px-2 py-0.5 rounded text-xs ${getDifficultyColor(entry.difficulty)}`}>
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <span className={`difficulty-badge-${entry.difficulty.toLowerCase()} px-3 py-1 rounded-full text-xs font-semibold`}>
                             {entry.difficulty}
                           </span>
-                          <span>{entry.category}</span>
-                          <span>•</span>
-                          <span>{formatDate(entry.completedAt)}</span>
+                          <span className="text-sm text-gray-600 font-medium">{entry.category}</span>
+                          <span className="text-xs text-gray-500">•</span>
+                          <span className="time-display text-xs">{formatDate(entry.completedAt)}</span>
                         </div>
                       </div>
                     </div>
                     
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-indigo-600">
+                    <div className="score-display text-right">
+                      <div className="text-3xl font-bold text-indigo-600 mb-1">
                         {entry.score}/{entry.totalQuestions}
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="percentage-display text-sm mb-1">
                         {entry.percentage.toFixed(1)}%
                       </div>
-                      <div className="text-xs text-gray-500">
+                      <div className="time-display text-xs">
                         ⏱️ {formatTime(entry.timeTaken)}
                       </div>
                     </div>
@@ -224,43 +229,44 @@ const Leaderboard = () => {
 
         {/* Personal Results */}
         {activeTab === 'personal' && user && (
-          <div className="bg-white rounded-xl shadow-lg p-6">
+          <div className="leaderboard-header bg-white rounded-xl shadow-lg p-6">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Your Quiz History</h2>
             
             {userResults.length === 0 ? (
-              <div className="text-center py-12">
+              <div className="empty-state text-center py-12 rounded-lg">
+                <div className="text-6xl mb-4">📝</div>
                 <p className="text-gray-600 text-lg mb-4">You haven't taken any quizzes yet</p>
                 <button onClick={() => navigate('/quiz')} className="btn btn-primary">
                   Take Your First Quiz
                 </button>
               </div>
             ) : (
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {userResults.map((result) => (
                   <div
                     key={result.id}
-                    className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"
+                    className="leaderboard-entry flex items-center justify-between p-6 rounded-xl transition-all duration-300"
                   >
                     <div className="flex-1">
-                      <div className="font-semibold text-gray-800">
+                      <div className="font-bold text-lg text-gray-800 mb-2">
                         {result.category}
                       </div>
-                      <div className="text-sm text-gray-600 flex items-center gap-2 mt-1">
-                        <span className={`px-2 py-0.5 rounded text-xs ${getDifficultyColor(result.difficulty)}`}>
+                      <div className="flex items-center gap-3 flex-wrap">
+                        <span className={`difficulty-badge-${result.difficulty.toLowerCase()} px-3 py-1 rounded-full text-xs font-semibold`}>
                           {result.difficulty}
                         </span>
-                        <span>{formatDate(result.completedAt)}</span>
+                        <span className="time-display text-xs">{formatDate(result.completedAt)}</span>
                       </div>
                     </div>
                     
-                    <div className="text-right">
-                      <div className="text-xl font-bold text-indigo-600">
+                    <div className="score-display text-right">
+                      <div className="text-2xl font-bold text-indigo-600 mb-1">
                         {result.score}/{result.totalQuestions}
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="percentage-display text-sm mb-1">
                         {result.percentage.toFixed(1)}%
                       </div>
-                      <div className="text-xs text-gray-500">
+                      <div className="time-display text-xs">
                         ⏱️ {formatTime(result.timeTaken)}
                       </div>
                     </div>

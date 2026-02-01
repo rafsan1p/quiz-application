@@ -77,7 +77,7 @@ const Login = () => {
             Welcome Back
           </h2>
           <p className="text-gray-600">
-            Sign in to access your pet care account
+            Sign in to access your QuizHero account
           </p>
         </div>
 

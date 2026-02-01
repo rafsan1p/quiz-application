@@ -5,6 +5,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Quiz from "../Pages/Quiz/Quiz";
 import Leaderboard from "../Pages/Leaderboard/Leaderboard";
+import Profile from "../Pages/Profile";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path: '/leaderboard',
                 Component: Leaderboard
+            },
+            {
+                path: '/profile',
+                Component: Profile
             }
         ]
     },

@@ -89,7 +89,7 @@ const Register = () => {
                         Create Account
                     </h2>
                     <p className="text-gray-600">
-                        Sign up to get started with PawMart
+                        Sign up to get started with QuizHero
                     </p>
                 </div>
 

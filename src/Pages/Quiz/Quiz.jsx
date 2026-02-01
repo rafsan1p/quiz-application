@@ -21,6 +21,19 @@ const Quiz = () => {
   const [loading, setLoading] = useState(false);
   const [timeElapsed, setTimeElapsed] = useState(0);
 
+  // Function declarations - moved before useEffect
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch(`${API_URL}/categories`);
+      const data = await response.json();
+      setCategories(data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      toast.error('Failed to load categories');
+    }
+  };
+
+  // useEffect hooks - now after function declarations
   useEffect(() => {
     if (!user) {
       toast.error('Please login to take quiz');
@@ -39,17 +52,6 @@ const Quiz = () => {
     }
     return () => clearInterval(interval);
   }, [currentPage, startTime]);
-
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch(`${API_URL}/categories`);
-      const data = await response.json();
-      setCategories(data);
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-      toast.error('Failed to load categories');
-    }
-  };
 
   const startQuiz = async () => {
     if (!selectedCategory || !selectedDifficulty) {
@@ -70,7 +72,7 @@ const Quiz = () => {
         return;
       }
       
-      const quizQuestions = data.slice(0, 10);
+      const quizQuestions = data.slice(0, 5);
       setQuestions(quizQuestions);
       setUserAnswers(new Array(quizQuestions.length).fill(-1));
       setCurrentQuestion(0);
@@ -302,7 +304,7 @@ const Quiz = () => {
             {/* Question Navigator */}
             <div className="mt-8 pt-6 border-t">
               <p className="text-sm text-gray-600 mb-3">Quick Navigation:</p>
-              <div className="grid grid-cols-10 gap-2">
+              <div className="grid grid-cols-5 gap-2">
                 {questions.map((_, idx) => (
                   <button
                     key={idx}

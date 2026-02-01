@@ -1,2 +1,779 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* Custom Dark Mode Styles */
+:root {
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  --gradient-dark-card: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+}
+
+/* Light theme improvements */
+[data-theme="light"] {
+  --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Modern Dark Theme */
+[data-theme="dark"] {
+  --gradient-bg: var(--gradient-dark);
+  
+  /* Background colors */
+  --fallback-b1: #1a202c;
+  --fallback-b2: #2d3748;
+  --fallback-b3: #4a5568;
+  --fallback-bc: #e2e8f0;
+  
+  /* Primary colors */
+  --fallback-p: #667eea;
+  --fallback-pc: #ffffff;
+  
+  /* Secondary colors */
+  --fallback-s: #764ba2;
+  --fallback-sc: #ffffff;
+  
+  /* Accent colors */
+  --fallback-a: #f093fb;
+  --fallback-ac: #ffffff;
+  
+  /* Neutral colors */
+  --fallback-n: #2d3748;
+  --fallback-nc: #e2e8f0;
+  
+  /* Base colors */
+  --fallback-b1: #1a202c;
+  --fallback-b2: #2d3748;
+  --fallback-b3: #4a5568;
+  --fallback-bc: #e2e8f0;
+  
+  /* Success, warning, error colors */
+  --fallback-su: #48bb78;
+  --fallback-wa: #ed8936;
+  --fallback-er: #f56565;
+}
+
+/* Dark mode body background */
+[data-theme="dark"] body {
+  background: var(--gradient-dark);
+  color: #e2e8f0;
+}
+
+/* Dark mode card styles */
+[data-theme="dark"] .bg-white {
+  background: var(--gradient-dark-card) !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #4a5568;
+}
+
+/* Dark mode gradient backgrounds */
+[data-theme="dark"] .bg-gradient-to-br {
+  background: var(--gradient-dark) !important;
+}
+
+[data-theme="dark"] .bg-gradient-to-r {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+/* Dark mode text colors */
+[data-theme="dark"] .text-gray-900 {
+  color: #f7fafc !important;
+}
+
+[data-theme="dark"] .text-gray-800 {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .text-gray-700 {
+  color: #cbd5e0 !important;
+}
+
+[data-theme="dark"] .text-gray-600 {
+  color: #a0aec0 !important;
+}
+
+[data-theme="dark"] .text-gray-500 {
+  color: #718096 !important;
+}
+
+[data-theme="dark"] .text-indigo-900 {
+  color: #e2e8f0 !important;
+}
+
+/* Dark mode form inputs */
+[data-theme="dark"] .input {
+  background-color: #2d3748 !important;
+  border-color: #4a5568 !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .input:focus {
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+}
+
+[data-theme="dark"] .input::placeholder {
+  color: #a0aec0 !important;
+}
+
+/* Dark mode select */
+[data-theme="dark"] .select {
+  background-color: #2d3748 !important;
+  border-color: #4a5568 !important;
+  color: #e2e8f0 !important;
+}
+
+/* Dark mode buttons */
+[data-theme="dark"] .btn-outline {
+  border-color: #667eea !important;
+  color: #667eea !important;
+}
+
+[data-theme="dark"] .btn-outline:hover {
+  background-color: #667eea !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode badges */
+[data-theme="dark"] .badge-outline {
+  border-color: #4a5568 !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .badge-success {
+  background-color: #48bb78 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .badge-warning {
+  background-color: #ed8936 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .badge-error {
+  background-color: #f56565 !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode table */
+[data-theme="dark"] .table {
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .table-zebra tbody tr:nth-child(even) {
+  background-color: #2d3748 !important;
+}
+
+/* Dark mode navbar */
+[data-theme="dark"] .navbar {
+  background-color: #1a202c !important;
+  border-bottom: 1px solid #4a5568;
+}
+
+/* Dark mode dropdown */
+[data-theme="dark"] .dropdown-content {
+  background-color: #2d3748 !important;
+  border: 1px solid #4a5568 !important;
+}
+
+/* Dark mode shadows */
+[data-theme="dark"] .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="dark"] .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Dark mode hover effects */
+[data-theme="dark"] .hover\:bg-gray-50:hover {
+  background-color: #2d3748 !important;
+}
+
+[data-theme="dark"] .hover\:bg-gray-100:hover {
+  background-color: #4a5568 !important;
+}
+
+/* Dark mode loading spinner */
+[data-theme="dark"] .loading {
+  color: #667eea !important;
+}
+
+/* Dark mode toast notifications */
+[data-theme="dark"] .Toastify__toast {
+  background-color: #2d3748 !important;
+  color: #e2e8f0 !important;
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Custom scrollbar for dark mode */
+[data-theme="dark"] ::-webkit-scrollbar {
+  width: 8px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #1a202c;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #667eea;
+}
+
+/* Modern Theme Toggle Button */
+.swap {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.swap:hover {
+  background-color: rgba(102, 126, 234, 0.1);
+  transform: scale(1.1);
+}
+
+[data-theme="dark"] .swap:hover {
+  background-color: rgba(102, 126, 234, 0.2);
+}
+
+.swap svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Improved gradient text */
+.bg-gradient-to-r.from-indigo-600.to-purple-600.bg-clip-text.text-transparent {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .bg-gradient-to-r.from-indigo-600.to-purple-600.bg-clip-text.text-transparent {
+  background: linear-gradient(90deg, #a78bfa 0%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced button styles for dark mode */
+[data-theme="dark"] .btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Dark mode improvements for specific components */
+[data-theme="dark"] .bg-indigo-50 {
+  background-color: #2d3748 !important;
+}
+
+[data-theme="dark"] .border-indigo-300 {
+  border-color: #667eea !important;
+}
+
+[data-theme="dark"] .text-indigo-600 {
+  color: #a78bfa !important;
+}
+
+[data-theme="dark"] .bg-indigo-600 {
+  background-color: #667eea !important;
+}
+
+/* Loading animation improvements */
+[data-theme="dark"] .loading-spinner {
+  border-color: #667eea transparent #667eea transparent;
+}
+
+/* Glass morphism effect for dark mode cards */
+[data-theme="dark"] .bg-white {
+  background: rgba(45, 55, 72, 0.8) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+/* Enhanced hover effects */
+[data-theme="dark"] .hover\:shadow-2xl:hover {
+  box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.25) !important;
+}
+
+[data-theme="dark"] .hover\:-translate-y-2:hover {
+  transform: translateY(-8px);
+}
+
+/* Better focus states */
+[data-theme="dark"] .input:focus,
+[data-theme="dark"] .select:focus {
+  outline: none;
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
+}
+
+/* Improved text selection */
+[data-theme="dark"] ::selection {
+  background-color: rgba(102, 126, 234, 0.3);
+  color: #ffffff;
+}
+
+/* Better link colors */
+[data-theme="dark"] a {
+  color: #a78bfa;
+}
+
+[data-theme="dark"] a:hover {
+  color: #c084fc;
+}
+
+/* Enhanced navbar brand */
+[data-theme="dark"] .navbar .font-bold {
+  background: linear-gradient(90deg, #a78bfa 0%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Better modal/dropdown backgrounds */
+[data-theme="dark"] .modal-box {
+  background-color: #2d3748 !important;
+  border: 1px solid #4a5568;
+}
+
+/* Improved progress bars */
+[data-theme="dark"] .progress {
+  background-color: #4a5568;
+}
+
+[data-theme="dark"] .progress::-webkit-progress-value {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Better alert styles */
+[data-theme="dark"] .alert {
+  background-color: #2d3748 !important;
+  border: 1px solid #4a5568;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .alert-success {
+  background-color: rgba(72, 187, 120, 0.2) !important;
+  border-color: #48bb78;
+  color: #68d391 !important;
+}
+
+[data-theme="dark"] .alert-warning {
+  background-color: rgba(237, 137, 54, 0.2) !important;
+  border-color: #ed8936;
+  color: #f6ad55 !important;
+}
+
+[data-theme="dark"] .alert-error {
+  background-color: rgba(245, 101, 101, 0.2) !important;
+  border-color: #f56565;
+  color: #fc8181 !important;
+}
+
+/* Fix for QuizHero gradient text in dark mode */
+[data-theme="dark"] .bg-gradient-to-r.from-indigo-600.to-purple-600.bg-clip-text.text-transparent {
+  background: linear-gradient(90deg, #a78bfa 0%, #c084fc 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Ensure gradient text is visible */
+[data-theme="dark"] span.bg-gradient-to-r.from-indigo-600.to-purple-600.bg-clip-text.text-transparent {
+  background: linear-gradient(90deg, #a78bfa 0%, #c084fc 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  display: inline-block !important;
+}
+
+/* Fix for leaderboard specific issues */
+[data-theme="dark"] .bg-indigo-600.text-white {
+  background-color: #667eea !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .bg-white.text-gray-700 {
+  background-color: #2d3748 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #4a5568;
+}
+
+[data-theme="dark"] .hover\:bg-gray-100:hover {
+  background-color: #4a5568 !important;
+}
+
+/* Leaderboard specific dark mode fixes */
+[data-theme="dark"] .bg-gray-50 {
+  background-color: #2d3748 !important;
+  border: 1px solid #4a5568;
+}
+
+[data-theme="dark"] .bg-indigo-50 {
+  background-color: rgba(102, 126, 234, 0.1) !important;
+  border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+[data-theme="dark"] .border-2.border-indigo-300 {
+  border-color: #667eea !important;
+}
+
+/* Better text colors for leaderboard */
+[data-theme="dark"] .text-gray-800 {
+  color: #f7fafc !important;
+}
+
+[data-theme="dark"] .text-gray-600 {
+  color: #cbd5e0 !important;
+}
+
+[data-theme="dark"] .text-gray-500 {
+  color: #a0aec0 !important;
+}
+
+/* Fix for difficulty badges in dark mode */
+[data-theme="dark"] .bg-green-100.text-green-700 {
+  background-color: rgba(72, 187, 120, 0.2) !important;
+  color: #68d391 !important;
+}
+
+[data-theme="dark"] .bg-yellow-100.text-yellow-700 {
+  background-color: rgba(237, 137, 54, 0.2) !important;
+  color: #f6ad55 !important;
+}
+
+[data-theme="dark"] .bg-red-100.text-red-700 {
+  background-color: rgba(245, 101, 101, 0.2) !important;
+  color: #fc8181 !important;
+}
+
+[data-theme="dark"] .bg-gray-100.text-gray-700 {
+  background-color: rgba(160, 174, 192, 0.2) !important;
+  color: #cbd5e0 !important;
+}
+
+/* Custom QuizHero gradient text */
+.quiz-hero-gradient {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  font-weight: bold;
+}
+
+[data-theme="dark"] .quiz-hero-gradient {
+  background: linear-gradient(90deg, #a78bfa 0%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  font-weight: bold;
+}
+
+/* Fallback for browsers that don't support background-clip */
+@supports not (-webkit-background-clip: text) {
+  .quiz-hero-gradient {
+    color: #667eea;
+  }
+  
+  [data-theme="dark"] .quiz-hero-gradient {
+    color: #a78bfa;
+  }
+}
+
+/* Leaderboard tab styling */
+.leaderboard-tab-inactive {
+  background-color: #ffffff;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+}
+
+.leaderboard-tab-inactive:hover {
+  background-color: #f9fafb;
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .leaderboard-tab-inactive {
+  background-color: #2d3748;
+  color: #e2e8f0;
+  border: 1px solid #4a5568;
+}
+
+[data-theme="dark"] .leaderboard-tab-inactive:hover {
+  background-color: #4a5568;
+  transform: translateY(-1px);
+}
+
+/* Better leaderboard entry styling */
+[data-theme="dark"] .leaderboard-entry {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  border: 1px solid #4a5568;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .leaderboard-entry:hover {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+}
+
+[data-theme="dark"] .leaderboard-entry.user-entry {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+  border: 2px solid #667eea;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+[data-theme="dark"] .leaderboard-entry.user-entry:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.25) 0%, rgba(118, 75, 162, 0.25) 100%);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+/* Enhanced leaderboard header */
+[data-theme="dark"] .leaderboard-header {
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  border: 1px solid #4a5568;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Better medal/rank styling */
+[data-theme="dark"] .rank-medal {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.3));
+}
+
+/* Enhanced difficulty badges */
+[data-theme="dark"] .difficulty-badge-easy {
+  background: linear-gradient(135deg, rgba(72, 187, 120, 0.2) 0%, rgba(56, 178, 172, 0.2) 100%);
+  color: #68d391;
+  border: 1px solid rgba(72, 187, 120, 0.4);
+  box-shadow: 0 2px 4px rgba(72, 187, 120, 0.2);
+}
+
+[data-theme="dark"] .difficulty-badge-medium {
+  background: linear-gradient(135deg, rgba(237, 137, 54, 0.2) 0%, rgba(251, 191, 36, 0.2) 100%);
+  color: #f6ad55;
+  border: 1px solid rgba(237, 137, 54, 0.4);
+  box-shadow: 0 2px 4px rgba(237, 137, 54, 0.2);
+}
+
+[data-theme="dark"] .difficulty-badge-hard {
+  background: linear-gradient(135deg, rgba(245, 101, 101, 0.2) 0%, rgba(252, 129, 129, 0.2) 100%);
+  color: #fc8181;
+  border: 1px solid rgba(245, 101, 101, 0.4);
+  box-shadow: 0 2px 4px rgba(245, 101, 101, 0.2);
+}
+
+/* Better score display */
+[data-theme="dark"] .score-display {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%);
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+/* Enhanced category filter */
+[data-theme="dark"] .category-filter {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  border: 1px solid #4a5568;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Better loading state */
+[data-theme="dark"] .loading-container {
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  border: 1px solid #4a5568;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Enhanced empty state */
+[data-theme="dark"] .empty-state {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  border: 1px solid #4a5568;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Better time display */
+[data-theme="dark"] .time-display {
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+/* Enhanced percentage display */
+[data-theme="dark"] .percentage-display {
+  color: #cbd5e0;
+  font-weight: 600;
+}
+
+/* Better main background for leaderboard */
+[data-theme="dark"] .min-h-screen.bg-gradient-to-br.from-blue-50.to-indigo-100 {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+}
+
+/* More specific background override for dark mode */
+[data-theme="dark"] .min-h-screen {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+}
+
+/* Ensure all gradient backgrounds are overridden in dark mode */
+[data-theme="dark"] .bg-gradient-to-br {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+}
+
+/* Override any light backgrounds */
+[data-theme="dark"] .from-blue-50 {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+}
+
+[data-theme="dark"] .to-indigo-100 {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+}
+
+/* Force dark background on body and html */
+[data-theme="dark"] html,
+[data-theme="dark"] body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+  color: #e2e8f0 !important;
+}
+
+/* Ensure root container has dark background */
+[data-theme="dark"] #root {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+  min-height: 100vh;
+}
+
+/* Override any remaining light backgrounds */
+[data-theme="dark"] div[class*="bg-gradient-to-br"] {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+}
+
+[data-theme="dark"] div[class*="from-blue-50"] {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+}
+
+[data-theme="dark"] div[class*="to-indigo-100"] {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+}
+
+/* Ensure all text is visible in dark mode */
+[data-theme="dark"] * {
+  color: inherit;
+}
+
+/* Specific text color fixes */
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] div {
+  color: inherit;
+}
+
+/* Make sure headings are visible */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3 {
+  color: #f7fafc;
+}
+
+/* Enhanced main heading */
+[data-theme="dark"] .text-4xl.font-bold.text-indigo-900 {
+  background: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: 0 4px 8px rgba(167, 139, 250, 0.3);
+  color: transparent !important;
+}
+
+/* Fallback for main heading if gradient doesn't work */
+[data-theme="dark"] h1.text-indigo-900 {
+  color: #a78bfa !important;
+}
+
+/* Better description text */
+[data-theme="dark"] .text-gray-600 {
+  color: #cbd5e0 !important;
+}
+
+/* Better spacing and layout */
+[data-theme="dark"] .space-y-4 > * + * {
+  margin-top: 1.5rem;
+}
+
+/* Enhanced call-to-action button */
+[data-theme="dark"] .btn-primary.btn-lg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .btn-primary.btn-lg:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+}
+
+/* Ensure main heading is always visible */
+[data-theme="dark"] .text-indigo-900 {
+  color: #f7fafc !important;
+}
+
+/* Better emoji and medal visibility */
+[data-theme="dark"] .text-2xl.font-bold {
+  color: #f7fafc;
+}
+
+/* Improve score visibility */
+[data-theme="dark"] .text-indigo-600 {
+  color: #a78bfa !important;
+}
+
+/* Better percentage text */
+[data-theme="dark"] .text-sm.text-gray-600 {
+  color: #cbd5e0 !important;
+}
+
+[data-theme="dark"] .text-xs.text-gray-500 {
+  color: #a0aec0 !important;
+}
+
+/* Additional stats colors for dark mode */
+[data-theme="dark"] .text-purple-600 {
+  color: #c084fc !important;
+}
+
+[data-theme="dark"] .text-green-600 {
+  color: #68d391 !important;
+}
+
+[data-theme="dark"] .text-orange-600 {
+  color: #f6ad55 !important;
+}
+
+/* Border color for stats section */
+[data-theme="dark"] .border-gray-200 {
+  border-color: #4a5568 !important;
+}
